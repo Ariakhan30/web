@@ -18,8 +18,8 @@ def index() -> rx.Component:
         rx.vstack(
             #navbar(),
             header(),
-            slider(),
-            #slideshow(),
+            #slider(),
+            slideshow(),
             descripcion(),
             instances.servicios.body_left(),
             instances.barandillas.body_right(),
