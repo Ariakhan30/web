@@ -20,16 +20,17 @@ class Size(Enum):
     SMALL = "0.5em"
     MEDIUM = "0.8em"
     DEFAULT = "1em"
-    FONT_HEADER = ["0.6em", "0.9em", "1em", "1.5em"]
+    FONT_HEADER = ["0.6em", "0.9em", "1em", "2em"]
     FONT_SIZE = ["0.3em", "0.5em", "0.8em", "1em"]
     FONT_SIZE_CONTENT = ["0.5em", "0.7em", "0.8em", "1em"]
     BIG = "2em"
     LOGO = ["2.5em", "4em", "6em", "8em"]
-    ORIGLASS = ["1.5em", "3em", "4em", "6em"]
+    ORIGLASS = ["2em", "3em", "4em", "6em"]
     IMAGE_WIDTH = ["10em", "20em","30em", "40em"]
     IMAGE_HEIGHT = ["7em", "15em","20em", "25em"]
     BOX_WIDTH = ["40%", "60%", "80%", "100%"]
     HEADER_SIZE = ["1.5em", "2em", "3em", "4em"]
+    MAP_SIZE = ["7em", "10em","15em", "20em"]
 
 # Styles
 
