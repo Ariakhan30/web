@@ -4,6 +4,7 @@ from web_crmsaez.components.descripcion import descripcion
 import web_crmsaez.components.instances as instances
 from web_crmsaez.components.footer import footer
 from web_crmsaez.components.slideshow import slideshow
+from web_crmsaez.components.slider import slider
 from web_crmsaez.components.galeria import galeria
 import web_crmsaez.styles.styles as styles
 from web_crmsaez.styles.styles import Size as Size
@@ -17,7 +18,8 @@ def index() -> rx.Component:
         rx.vstack(
             #navbar(),
             header(),
-            slideshow(),
+            slider(),
+            #slideshow(),
             descripcion(),
             instances.servicios.body_left(),
             instances.barandillas.body_right(),

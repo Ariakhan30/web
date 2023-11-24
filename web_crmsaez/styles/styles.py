@@ -31,6 +31,9 @@ class Size(Enum):
     BOX_WIDTH = ["40%", "60%", "80%", "100%"]
     HEADER_SIZE = ["1.5em", "2em", "3em", "4em"]
     MAP_SIZE = ["7em", "10em","15em", "20em"]
+    IMAGE_WIDTH_SLIDER = ["20em", "40em","60em", "80em"]
+    IMAGE_HEIGHT_SLIDER = ["15em", "25em","30em", "35em"]
+
 
 # Styles
 
@@ -65,7 +68,7 @@ BASE_STYLE = {
         "box_shadow": "7px 7px 5px  #888888",
         "border_width": "1px",
         "border_color": "#888888",
-        "margin": Size.DEFAULT.value
+             
     }
     #rx.Link: {
     #    "text_decoration": "none",

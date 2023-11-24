@@ -8,7 +8,7 @@ def header() -> rx.Component:
     return rx.box(
         rx.hstack(
             rx.hstack(
-                rx.image(src="logo_comercial.png", width=Size.LOGO.value, border_radius=styles.BORDER_RADIUS),
+                rx.image(src="logo_comercial.png", width=Size.LOGO.value, border_radius=styles.BORDER_RADIUS, aspect_ratio=""),
                 rx.text("CRISTALERÍA MANOLO SÁEZ S.L.", color=styles.FONT_COLOR, font_size=Size.FONT_HEADER.value, font_family="ubuntu"),
             padding_left=Size.FONT_HEADER.value,
             ),
