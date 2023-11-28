@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { Event, getAllLocalStorageItems, getRefValue, getRefValues, isTrue, preventDefault, refs, spreadArraysOrObjects, uploadFiles, useEventLoop } from "/utils/state"
 import { EventLoopContext, initialEvents, StateContext } from "/utils/context.js"
 import "focus-visible/dist/focus-visible"
-import { Box, Center, Heading, HStack, Image, Link, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Text, useColorMode, VStack } from "@chakra-ui/react"
+import { Box, Button, Center, Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, HStack, Image, Link, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Text, useColorMode, VStack } from "@chakra-ui/react"
 import NextLink from "next/link"
 import { PhoneIcon } from "@chakra-ui/icons"
 import NextHead from "next/head"
@@ -11,7 +11,7 @@ import NextHead from "next/head"
 
 
 export default function Component() {
-  const button_state = useContext(StateContext)
+  const drawer_state = useContext(StateContext)
   const router = useRouter()
   const { colorMode, toggleColorMode } = useColorMode()
   const focusRef = useRef();
@@ -35,9 +35,9 @@ export default function Component() {
     }
   }, [router])
 
-  const ref_slideshow = useRef(null); refs['ref_slideshow'] = ref_slideshow;
-  const ref_contactos = useRef(null); refs['ref_contactos'] = ref_contactos;
   const ref_descripcion = useRef(null); refs['ref_descripcion'] = ref_descripcion;
+  const ref_contacto = useRef(null); refs['ref_contacto'] = ref_contacto;
+  const ref_slideshow = useRef(null); refs['ref_slideshow'] = ref_slideshow;
 
   return (
     <Fragment>
@@ -70,14 +70,45 @@ export default function Component() {
   <VStack sx={{"width": "100%", "overflow": "auto"}}>
   <Box sx={{"width": "100%", "bg": "white"}}>
   <HStack justify={`space-between`} sx={{"display": "flex", "width": "100%", "overflow": "auto"}}>
-  <HStack sx={{"padding": ["0.6em", "0.9em", "1em", "2em"], "width": "100%", "overflow": "auto"}}>
-  <Image src={`logo_comercial.png`} sx={{"width": ["2.5em", "4em", "6em", "8em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
+  <HStack spacing={`2vw`} sx={{"padding": ["0.6em", "0.9em", "1em", "2em"], "width": "100%", "overflow": "auto"}}>
+  <Box sx={{"width": "5vw"}}>
+  <Button onClick={(_e) => addEvents([Event("drawer_state.left", {})], (_e))} sx={{"width": "5vw", "height": "5vh", "display": "block", "padding": "0.5em", "borderRadius": "1em", "bg": "white", "color": "black", "borderWidth": "1px", "borderColor": "#888888", "boxShadow": "5px 5px 3px #888888"}}>
+  <Image src={`/logo_comercial.png`} sx={{"width": ["2.5em", "4em", "6em", "8em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+</Button>
+  <Drawer closeOnOverlayClick={true} isOpen={drawer_state.show_left} placement={`left`}>
+  <DrawerOverlay>
+  <DrawerContent sx={{"bg": "rgba(0, 0, 0, 0.3)"}}>
+  <DrawerHeader>
+  {`Menu`}
+</DrawerHeader>
+  <DrawerBody>
+  <VStack alignItems={`left`} spacing={`4vh`} sx={{"width": "100%", "overflow": "auto"}}>
+  <Link as={NextLink} href={`/`}>
+  {`Inicio`}
+</Link>
+  <Link as={NextLink} href={`/images`}>
+  {`Galeria`}
+</Link>
+  <Link as={NextLink} href={`/#contacto`}>
+  {`Contacto`}
+</Link>
+</VStack>
+</DrawerBody>
+  <DrawerFooter>
+  <Button onClick={(_e) => addEvents([Event("drawer_state.left", {})], (_e))} sx={{"display": "block", "padding": "0.5em", "borderRadius": "1em", "bg": "white", "color": "black", "borderWidth": "1px", "borderColor": "#888888", "boxShadow": "5px 5px 3px #888888"}}>
+  {`Close`}
+</Button>
+</DrawerFooter>
+</DrawerContent>
+</DrawerOverlay>
+</Drawer>
+</Box>
   <Text sx={{"color": "black", "fontSize": ["0.6em", "0.9em", "1em", "2em"], "fontFamily": "ubuntu"}}>
   {`CRISTALERÍA MANOLO SÁEZ S.L.`}
 </Text>
 </HStack>
   <HStack justify={`right`} sx={{"padding": ["0.6em", "0.9em", "1em", "2em"], "width": "100%", "overflow": "auto"}}>
-  <Image src={`Origlass_logo.png`} sx={{"height": ["2em", "3em", "4em", "6em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
+  <Image src={`/Origlass_logo.png`} sx={{"height": ["2em", "3em", "4em", "6em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
   <Link as={NextLink} href={`tel:966750796`} isExternal={true} sx={{"color": "black", "fontSize": ["0.3em", "0.5em", "0.8em", "1em"]}}>
   <PhoneIcon/>
   {` 96 675 07 96`}
@@ -99,7 +130,7 @@ export default function Component() {
   <Box sx={{"bg": "lightgrey", "width": "100%"}}>
   <Center>
   <HStack alignItems={`center`} justify={`center`} sx={{"width": "80%", "paddingY": "2em", "overflow": "auto"}}>
-  <Image src={`camara_composicion.jpg`} sx={{"width": ["10em", "20em", "30em", "40em"], "height": ["7em", "15em", "20em", "25em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
+  <Image src={`camara_composicion.jpg`} sx={{"width": ["10em", "20em", "30em", "40em"], "height": ["7em", "15em", "20em", "25em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
   <VStack sx={{"width": "80%", "overflow": "auto"}}>
   <Heading sx={{"fontSize": ["0.6em", "0.9em", "1em", "2em"], "color": "black"}}>
   {`Fabricamos Doble Acristalamiento`}
@@ -122,14 +153,14 @@ export default function Component() {
   {`Además, nuestras barandas de vidrio templado no solo aportan un toque de elegancia y modernidad a cualquier espacio, sino que también garantizan la seguridad de los usuarios.`}
 </Text>
 </VStack>
-  <Image src={`barandilla2.jpeg`} sx={{"width": ["10em", "20em", "30em", "40em"], "height": ["7em", "15em", "20em", "25em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
+  <Image src={`barandilla2.jpeg`} sx={{"width": ["10em", "20em", "30em", "40em"], "height": ["7em", "15em", "20em", "25em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
 </HStack>
 </Center>
 </Box>
   <Box sx={{"bg": "lightgrey", "width": "100%"}}>
   <Center>
   <HStack alignItems={`center`} justify={`center`} sx={{"width": "80%", "paddingY": "2em", "overflow": "auto"}}>
-  <Image src={`vidrio_laminado.jpg`} sx={{"width": ["10em", "20em", "30em", "40em"], "height": ["7em", "15em", "20em", "25em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
+  <Image src={`vidrio_laminado.jpg`} sx={{"width": ["10em", "20em", "30em", "40em"], "height": ["7em", "15em", "20em", "25em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
   <VStack sx={{"width": "80%", "overflow": "auto"}}>
   <Heading sx={{"fontSize": ["0.6em", "0.9em", "1em", "2em"], "color": "black"}}>
   {`Seguridad con vidrio Laminado`}
@@ -152,14 +183,14 @@ export default function Component() {
   {`El vidrio monolítico es un material transparente, versátil y duradero.    Está formado por una única hoja de vidrio sólido sin capas intermedias.    Ofrece claridad visual, no altera colores y permite el paso de luz.    Es resistente al impacto y ofrece aislamiento térmico y acústico.    Su diseño flexible permite fabricarlo en diferentes formas y tamaños.    Es económico debido a su proceso de fabricación sencillo`}
 </Text>
 </VStack>
-  <Image src={`vidrio_monolitico.jpeg`} sx={{"width": ["10em", "20em", "30em", "40em"], "height": ["7em", "15em", "20em", "25em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
+  <Image src={`vidrio_monolitico.jpeg`} sx={{"width": ["10em", "20em", "30em", "40em"], "height": ["7em", "15em", "20em", "25em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
 </HStack>
 </Center>
 </Box>
   <Box sx={{"bg": "lightgrey", "width": "100%"}}>
   <Center>
   <HStack alignItems={`center`} justify={`center`} sx={{"width": "80%", "paddingY": "2em", "overflow": "auto"}}>
-  <Image src={`doble_acristalamiento.jpg`} sx={{"width": ["10em", "20em", "30em", "40em"], "height": ["7em", "15em", "20em", "25em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
+  <Image src={`doble_acristalamiento.jpg`} sx={{"width": ["10em", "20em", "30em", "40em"], "height": ["7em", "15em", "20em", "25em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
   <VStack sx={{"width": "80%", "overflow": "auto"}}>
   <Heading sx={{"fontSize": ["0.6em", "0.9em", "1em", "2em"], "color": "black"}}>
   {`Configura el vidrio a tus necesidades`}
@@ -171,7 +202,7 @@ export default function Component() {
 </HStack>
 </Center>
 </Box>
-  <Box id={`contactos`} ref={ref_contactos} sx={{"width": "100%"}}>
+  <Box id={`contacto`} ref={ref_contacto} sx={{"width": "100%"}}>
   <VStack justify={`center`} sx={{"marginY": "2em", "marginX": "0.5em", "width": "100%", "overflow": "auto"}}>
   <Heading sx={{"fontSize": ["0.6em", "0.9em", "1em", "2em"], "color": "black"}}>
   {`Contacto`}

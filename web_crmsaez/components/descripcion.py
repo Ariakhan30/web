@@ -9,7 +9,7 @@ Nuestro enfoque en la excelencia y la innovación nos ha llevado a especializarn
 
 
 
-def descripcion():
+def descripcion() -> rx.Component:
     return rx.vstack(
         rx.heading("Quiénes somos", font_size=Size.FONT_HEADER.value, color=styles.FONT_COLOR, margin_x=Size.BIG.value),
         rx.box(texto,

@@ -4,7 +4,7 @@ import web_crmsaez.styles.styles as styles
 
 
 
-def galeria():
+def galeria() -> rx.Component:
     return rx.box(
         rx.center(
         rx.responsive_grid(    

@@ -11,7 +11,7 @@ import NextHead from "next/head"
 
 
 export default function Component() {
-  const button_state = useContext(StateContext)
+  const drawer_state = useContext(StateContext)
   const router = useRouter()
   const { colorMode, toggleColorMode } = useColorMode()
   const focusRef = useRef();

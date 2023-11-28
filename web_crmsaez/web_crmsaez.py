@@ -1,14 +1,14 @@
 import reflex as rx
 from web_crmsaez.components.navbar import navbar
+from web_crmsaez.components.header import header
+from web_crmsaez.components.slideshow import  slideshow
 from web_crmsaez.components.descripcion import descripcion
-import web_crmsaez.components.instances as instances
 from web_crmsaez.components.footer import footer
-from web_crmsaez.components.slideshow import slideshow
-from web_crmsaez.components.slider import slider
 from web_crmsaez.components.galeria import galeria
+import web_crmsaez.components.instances as instances
 import web_crmsaez.styles.styles as styles
 from web_crmsaez.styles.styles import Size as Size
-from web_crmsaez.components.header import header
+
 
 
 
@@ -16,9 +16,7 @@ def index() -> rx.Component:
     
     return rx.box(
         rx.vstack(
-            #navbar(),
             header(),
-            #slider(),
             slideshow(),
             descripcion(),
             instances.servicios.body_left(),
@@ -39,7 +37,7 @@ def images() -> rx.Component:
 
     return rx.box(
         rx.vstack(
-            navbar(),
+            header(),
             galeria(),
             footer(),
         ),

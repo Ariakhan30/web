@@ -5,7 +5,7 @@ import web_crmsaez.styles.styles as styles
 from enum import Enum
 
 
-def footer():
+def footer() -> rx.Component:
     return rx.box(
         rx.vstack(
             rx.heading("Contacto", font_size=Size.FONT_HEADER.value, color=styles.FONT_COLOR),
@@ -48,5 +48,5 @@ def footer():
         justify="center"               
         ),    
     width=styles.MAX_WIDTH,
-    id="contactos",
+    id="contacto",
     )

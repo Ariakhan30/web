@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { Event, getAllLocalStorageItems, getRefValue, getRefValues, isTrue, preventDefault, refs, spreadArraysOrObjects, uploadFiles, useEventLoop } from "/utils/state"
 import { EventLoopContext, initialEvents, StateContext } from "/utils/context.js"
 import "focus-visible/dist/focus-visible"
-import { Box, Center, Heading, HStack, Image, Link, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, SimpleGrid, Text, useColorMode, VStack } from "@chakra-ui/react"
+import { Box, Button, Center, Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, HStack, Image, Link, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, SimpleGrid, Text, useColorMode, VStack } from "@chakra-ui/react"
 import NextLink from "next/link"
 import { PhoneIcon } from "@chakra-ui/icons"
 import NextHead from "next/head"
@@ -11,7 +11,7 @@ import NextHead from "next/head"
 
 
 export default function Component() {
-  const button_state = useContext(StateContext)
+  const drawer_state = useContext(StateContext)
   const router = useRouter()
   const { colorMode, toggleColorMode } = useColorMode()
   const focusRef = useRef();
@@ -35,7 +35,7 @@ export default function Component() {
     }
   }, [router])
 
-  const ref_contactos = useRef(null); refs['ref_contactos'] = ref_contactos;
+  const ref_contacto = useRef(null); refs['ref_contacto'] = ref_contacto;
 
   return (
     <Fragment>
@@ -66,65 +66,73 @@ export default function Component() {
 </Fragment>
   <Box sx={{"bg": "white", "width": "120em", "align": "center", "height": "auto"}}>
   <VStack sx={{"width": "100%", "overflow": "auto"}}>
-  <HStack spacing={`space-between`} sx={{"bg": "white", "width": "100%", "height": "10em", "zIndex": "999", "overflow": "auto"}}>
-  <Center sx={{"width": "100%", "top": "0"}}>
-  <Image src={`/logo_comercial.png`} sx={{"widht": "8em", "height": "8em", "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
-  <Text sx={{"paddingX": "1em", "fontSize": "1.5em", "fontFamily": "ubuntu", "color": "black"}}>
-  <Link as={NextLink} href={`/`}>
-  {`CRISTALERIA MANOLO SAEZ S.L.`}
-</Link>
-</Text>
-  <Text sx={{"paddingX": "1em", "fontSize": "1em", "fontWeight": "bold", "color": "black"}}>
+  <Box sx={{"width": "100%", "bg": "white"}}>
+  <HStack justify={`space-between`} sx={{"display": "flex", "width": "100%", "overflow": "auto"}}>
+  <HStack spacing={`2vw`} sx={{"padding": ["0.6em", "0.9em", "1em", "2em"], "width": "100%", "overflow": "auto"}}>
+  <Box sx={{"width": "5vw"}}>
+  <Button onClick={(_e) => addEvents([Event("drawer_state.left", {})], (_e))} sx={{"width": "5vw", "height": "5vh", "display": "block", "padding": "0.5em", "borderRadius": "1em", "bg": "white", "color": "black", "borderWidth": "1px", "borderColor": "#888888", "boxShadow": "5px 5px 3px #888888"}}>
+  <Image src={`/logo_comercial.png`} sx={{"width": ["2.5em", "4em", "6em", "8em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+</Button>
+  <Drawer closeOnOverlayClick={true} isOpen={drawer_state.show_left} placement={`left`}>
+  <DrawerOverlay>
+  <DrawerContent sx={{"bg": "rgba(0, 0, 0, 0.3)"}}>
+  <DrawerHeader>
+  {`Menu`}
+</DrawerHeader>
+  <DrawerBody>
+  <VStack alignItems={`left`} spacing={`4vh`} sx={{"width": "100%", "overflow": "auto"}}>
   <Link as={NextLink} href={`/`}>
   {`Inicio`}
 </Link>
-</Text>
-  <Text sx={{"paddingX": "1em", "fontSize": "1em", "fontWeight": "bold", "color": "black"}}>
-  <Link as={NextLink} href={`/#descripcion`}>
-  {`Informacion`}
-</Link>
-</Text>
-  <Text sx={{"paddingX": "1em", "fontSize": "1em", "fontWeight": "bold", "color": "black"}}>
   <Link as={NextLink} href={`/images`}>
   {`Galeria`}
 </Link>
-</Text>
-  <Text sx={{"paddingX": "1em", "fontSize": "1em", "fontWeight": "bold", "color": "black"}}>
-  <Link as={NextLink} href={`/#servicios`}>
-  {`Servicios`}
-</Link>
-</Text>
-  <Text sx={{"paddingX": "1em", "fontSize": "1em", "fontWeight": "bold", "color": "black"}}>
-  <Link as={NextLink} href={`/#contactos`}>
+  <Link as={NextLink} href={`/#contacto`}>
   {`Contacto`}
 </Link>
+</VStack>
+</DrawerBody>
+  <DrawerFooter>
+  <Button onClick={(_e) => addEvents([Event("drawer_state.left", {})], (_e))} sx={{"display": "block", "padding": "0.5em", "borderRadius": "1em", "bg": "white", "color": "black", "borderWidth": "1px", "borderColor": "#888888", "boxShadow": "5px 5px 3px #888888"}}>
+  {`Close`}
+</Button>
+</DrawerFooter>
+</DrawerContent>
+</DrawerOverlay>
+</Drawer>
+</Box>
+  <Text sx={{"color": "black", "fontSize": ["0.6em", "0.9em", "1em", "2em"], "fontFamily": "ubuntu"}}>
+  {`CRISTALERÍA MANOLO SÁEZ S.L.`}
 </Text>
-  <Image src={`/Origlass_logo.png`} sx={{"widht": "8em", "height": "6em", "borderRadius": "10", "boxShadow": "0px 0px 0px", "borderWidth": "1px", "borderColor": "#888888"}}/>
-  <Link as={NextLink} href={`tel:966750796`} isExternal={true} sx={{"color": "black", "paddingX": "1em"}}>
-  <PhoneIcon/>
-  {` 966750796`}
-</Link>
-</Center>
 </HStack>
+  <HStack justify={`right`} sx={{"padding": ["0.6em", "0.9em", "1em", "2em"], "width": "100%", "overflow": "auto"}}>
+  <Image src={`/Origlass_logo.png`} sx={{"height": ["2em", "3em", "4em", "6em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+  <Link as={NextLink} href={`tel:966750796`} isExternal={true} sx={{"color": "black", "fontSize": ["0.3em", "0.5em", "0.8em", "1em"]}}>
+  <PhoneIcon/>
+  {` 96 675 07 96`}
+</Link>
+</HStack>
+</HStack>
+</Box>
   <Box sx={{"width": "100%", "justify": "center", "padding": "1em", "bg": "lightgrey"}}>
   <Center>
   <SimpleGrid columns={[3]} spacing={`auto`} sx={{"width": "80%"}}>
-  <Image alt={`imagen1`} src={`/imagen1.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "1em", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
-  <Image alt={`imagen2`} src={`/imagen2.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "1em", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
-  <Image alt={`imagen3`} src={`/imagen3.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "1em", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
-  <Image alt={`imagen4`} src={`/imagen4.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "1em", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
-  <Image alt={`imagen5`} src={`/imagen5.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "1em", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
-  <Image alt={`imagen6`} src={`/imagen6.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "1em", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
-  <Image alt={`imagen7`} src={`/imagen7.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "1em", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
-  <Image alt={`imagen8`} src={`/imagen8.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "1em", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
-  <Image alt={`imagen9`} src={`/imagen9.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "1em", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
-  <Image alt={`imagen10`} src={`/imagen10.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "1em", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
-  <Image alt={`imagen11`} src={`/mampara1.jpg`} sx={{"height": "20em", "width": "30em", "borderRadius": "1em", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
-  <Image alt={`imagen12`} src={`/oficina.jpg`} sx={{"height": "20em", "width": "30em", "borderRadius": "1em", "boxShadow": "7px 7px 5px  #888888", "borderWidth": "1px", "borderColor": "#888888"}}/>
+  <Image alt={`imagen1`} src={`/imagen1.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+  <Image alt={`imagen2`} src={`/imagen2.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+  <Image alt={`imagen3`} src={`/imagen3.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+  <Image alt={`imagen4`} src={`/imagen4.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+  <Image alt={`imagen5`} src={`/imagen5.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+  <Image alt={`imagen6`} src={`/imagen6.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+  <Image alt={`imagen7`} src={`/imagen7.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+  <Image alt={`imagen8`} src={`/imagen8.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+  <Image alt={`imagen9`} src={`/imagen9.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+  <Image alt={`imagen10`} src={`/imagen10.png`} sx={{"height": "20em", "width": "30em", "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+  <Image alt={`imagen11`} src={`/mampara1.jpg`} sx={{"height": "20em", "width": "30em", "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+  <Image alt={`imagen12`} src={`/oficina.jpg`} sx={{"height": "20em", "width": "30em", "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
 </SimpleGrid>
 </Center>
 </Box>
-  <Box id={`contactos`} ref={ref_contactos} sx={{"width": "100%"}}>
+  <Box id={`contacto`} ref={ref_contacto} sx={{"width": "100%"}}>
   <VStack justify={`center`} sx={{"marginY": "2em", "marginX": "0.5em", "width": "100%", "overflow": "auto"}}>
   <Heading sx={{"fontSize": ["0.6em", "0.9em", "1em", "2em"], "color": "black"}}>
   {`Contacto`}

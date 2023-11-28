@@ -1,27 +1,9 @@
 import reflex as rx
 from web_crmsaez.styles.styles import Size
 import web_crmsaez.styles.styles as styles
-from typing import List
 
 
-
-
-class ButtonState(rx.State):
-    index: int = 0
-    images: List[str] = ["cantopulido.jpg", "nave1.jpg", "nave2.jpg"]
-    
-    def increment(self):
-        self.index = (self.index +1) % len(self.images)
-        
-    def decrement(self):
-        self.index = (self.index -1) % len(self.images)
-
-    @rx.var
-    def get_image(self) -> List[str]:
-        return [self.images[self.index], self.images[(self.index +1) % len(self.images)], self.images[(self.index +2) % len(self.images)]]
-
-
-def slideshow():
+def slideshow() -> rx.Component:
 
     return rx.box(
         rx.html("""

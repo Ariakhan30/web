@@ -64,11 +64,9 @@ BASE_STYLE = {
         "box_shadow": "5px 5px 3px #888888",
     },
     rx.Image: {
-        "border_radius": Size.DEFAULT.value,
+        "border_radius": BORDER_RADIUS,
         "box_shadow": "7px 7px 5px  #888888",
-        "border_width": "1px",
-        "border_color": "#888888",
-             
+                     
     }
     #rx.Link: {
     #    "text_decoration": "none",
