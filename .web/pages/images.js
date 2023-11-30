@@ -66,7 +66,7 @@ export default function Component() {
 </Fragment>
   <Box sx={{"bg": "white", "width": "display-width", "align": "center", "height": "auto"}}>
   <VStack sx={{"width": "100%", "overflow": "auto"}}>
-  <Box sx={{"width": "100%", "bg": "white"}}>
+  <VStack sx={{"width": "100%", "bg": "white", "overflow": "auto"}}>
   <HStack justify={`space-between`} sx={{"display": "flex", "width": "100%", "overflow": "auto"}}>
   <HStack spacing={`6vw`} sx={{"padding": ["0.6em", "0.9em", "1em", "2em"], "width": "100%", "overflow": "auto"}}>
   <Box sx={{"width": "5vw"}}>
@@ -109,13 +109,24 @@ export default function Component() {
 </HStack>
   <HStack justify={`right`} spacing={`4vw`} sx={{"padding": ["0.6em", "0.9em", "1em", "2em"], "width": "100%", "overflow": "auto"}}>
   <Image src={`/Origlass_logo.png`} sx={{"height": ["2em", "3em", "4em", "6em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
-  <Link as={NextLink} href={`tel:966750796`} isExternal={true} sx={{"color": "black", "fontSize": ["0.3em", "0.5em", "0.8em", "1em"]}}>
+  <Link as={NextLink} href={`tel:966750796`} isExternal={true} sx={{"color": "black", "fontSize": ["0.3em", "0.5em", "0.8em", "1.5em"]}}>
   <PhoneIcon/>
   {` 96 675 07 96`}
 </Link>
 </HStack>
 </HStack>
-</Box>
+  <HStack justify={`space-evenly`} sx={{"width": "100%", "overflow": "auto"}}>
+  <Link as={NextLink} href={`/`} sx={{"color": "black", "fontSize": ["0.3em", "0.5em", "0.8em", "1.5em"]}}>
+  {`Inicio`}
+</Link>
+  <Link as={NextLink} href={`/images`} sx={{"color": "black", "fontSize": ["0.3em", "0.5em", "0.8em", "1.5em"]}}>
+  {`Galeria`}
+</Link>
+  <Link as={NextLink} href={`/#contacto`} sx={{"color": "black", "fontSize": ["0.3em", "0.5em", "0.8em", "1.5em"]}}>
+  {`Contacto`}
+</Link>
+</HStack>
+</VStack>
   <Box sx={{"width": "100%", "justify": "center", "padding": "1em", "bg": "lightgrey"}}>
   <Center>
   <SimpleGrid columns={[1, 2, 3]} spacingY={`2em`} sx={{"width": "80%"}}>

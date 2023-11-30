@@ -20,8 +20,9 @@ class Size(Enum):
     SMALL = "0.5em"
     MEDIUM = "0.8em"
     DEFAULT = "1em"
+    HIGH = "1.5em"
     FONT_HEADER = ["0.6em", "0.9em", "1em", "2em"]
-    FONT_SIZE = ["0.3em", "0.5em", "0.8em", "1em"]
+    FONT_SIZE = ["0.3em", "0.5em", "0.8em", "1.5em"]
     FONT_SIZE_CONTENT = ["0.5em", "0.7em", "0.8em", "1em"]
     BIG = "2em"
     LOGO = ["3em", "4em", "6em", "8em"]

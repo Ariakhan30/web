@@ -5,7 +5,7 @@ from web_crmsaez.components.navbar import navbar
 
 
 def header() -> rx.Component:
-    return rx.box(
+    return rx.vstack(
         rx.hstack(
             rx.hstack(
                 navbar(),                
@@ -24,9 +24,13 @@ def header() -> rx.Component:
             ),
         display="flex",
         justify="space-between",
-        
         ),
-        width=styles.MAX_WIDTH,
-        bg=styles.BG_COLOR_RIGHT,
-
+        rx.hstack(
+            rx.link("Inicio", href="/", color=styles.FONT_COLOR, font_size=Size.FONT_SIZE.value),
+            rx.link("Galeria", href="/images", color=styles.FONT_COLOR, font_size=Size.FONT_SIZE.value),
+            rx.link("Contacto", href="/#contacto", color=styles.FONT_COLOR, font_size=Size.FONT_SIZE.value),
+            justify="space-evenly",    
+        ),
+    width=styles.MAX_WIDTH,
+    bg=styles.BG_COLOR_RIGHT,
     )

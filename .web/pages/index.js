@@ -35,9 +35,9 @@ export default function Component() {
     }
   }, [router])
 
+  const ref_slideshow = useRef(null); refs['ref_slideshow'] = ref_slideshow;
   const ref_descripcion = useRef(null); refs['ref_descripcion'] = ref_descripcion;
   const ref_contacto = useRef(null); refs['ref_contacto'] = ref_contacto;
-  const ref_slideshow = useRef(null); refs['ref_slideshow'] = ref_slideshow;
 
   return (
     <Fragment>
@@ -68,7 +68,7 @@ export default function Component() {
 </Fragment>
   <Box sx={{"bg": "white", "width": "display-width", "align": "center"}}>
   <VStack sx={{"width": "100%", "overflow": "auto"}}>
-  <Box sx={{"width": "100%", "bg": "white"}}>
+  <VStack sx={{"width": "100%", "bg": "white", "overflow": "auto"}}>
   <HStack justify={`space-between`} sx={{"display": "flex", "width": "100%", "overflow": "auto"}}>
   <HStack spacing={`6vw`} sx={{"padding": ["0.6em", "0.9em", "1em", "2em"], "width": "100%", "overflow": "auto"}}>
   <Box sx={{"width": "5vw"}}>
@@ -111,13 +111,24 @@ export default function Component() {
 </HStack>
   <HStack justify={`right`} spacing={`4vw`} sx={{"padding": ["0.6em", "0.9em", "1em", "2em"], "width": "100%", "overflow": "auto"}}>
   <Image src={`/Origlass_logo.png`} sx={{"height": ["2em", "3em", "4em", "6em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
-  <Link as={NextLink} href={`tel:966750796`} isExternal={true} sx={{"color": "black", "fontSize": ["0.3em", "0.5em", "0.8em", "1em"]}}>
+  <Link as={NextLink} href={`tel:966750796`} isExternal={true} sx={{"color": "black", "fontSize": ["0.3em", "0.5em", "0.8em", "1.5em"]}}>
   <PhoneIcon/>
   {` 96 675 07 96`}
 </Link>
 </HStack>
 </HStack>
-</Box>
+  <HStack justify={`space-evenly`} sx={{"width": "100%", "overflow": "auto"}}>
+  <Link as={NextLink} href={`/`} sx={{"color": "black", "fontSize": ["0.3em", "0.5em", "0.8em", "1.5em"]}}>
+  {`Inicio`}
+</Link>
+  <Link as={NextLink} href={`/images`} sx={{"color": "black", "fontSize": ["0.3em", "0.5em", "0.8em", "1.5em"]}}>
+  {`Galeria`}
+</Link>
+  <Link as={NextLink} href={`/#contacto`} sx={{"color": "black", "fontSize": ["0.3em", "0.5em", "0.8em", "1.5em"]}}>
+  {`Contacto`}
+</Link>
+</HStack>
+</VStack>
   <Box id={`slideshow`} ref={ref_slideshow} sx={{"alignContent": "center", "justifyContent": "center", "padding": "50px", "bg": "lightgrey", "width": "100%", "height": ["40%", "60%", "80%", "100%"], "marginY": "50px"}}>
   <Box dangerouslySetInnerHTML={{"__html": "\n<!DOCTYPE html>\n<html>\n<head>\n    <link rel=\"stylesheet\" href=\"estilos.css\">\n</head>\n<body>\n    <div class=\"container__slider\">\n        <div class=\"container\">\n            <input type=\"radio\" name=\"slider\" id=\"item-1\" checked>\n            <input type=\"radio\" name=\"slider\" id=\"item-2\">\n            <input type=\"radio\" name=\"slider\" id=\"item-3\">\n    \n            <div class=\"cards\">\n                <label class=\"card\" for=\"item-1\" id=\"selector-1\">\n                    <img class=\"slider\" src=\"imagen9.png\">\n                </label>\n                <label class=\"card\" for=\"item-2\" id=\"selector-2\">\n                    <img class=\"slider\" src=\"imagen7.png\">\n                </label>\n                <label class=\"card\" for=\"item-3\" id=\"selector-3\">\n                    <img class=\"slider\" src=\"imagen4.png\">\n                </label>\n            </div>\n        </div>\n    </div>\n\n</body>\n</html>\n        "}}/>
 </Box>
