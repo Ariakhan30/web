@@ -24,7 +24,7 @@ class Size(Enum):
     FONT_SIZE = ["0.3em", "0.5em", "0.8em", "1em"]
     FONT_SIZE_CONTENT = ["0.5em", "0.7em", "0.8em", "1em"]
     BIG = "2em"
-    LOGO = ["2.5em", "4em", "6em", "8em"]
+    LOGO = ["3em", "4em", "6em", "8em"]
     ORIGLASS = ["2em", "3em", "4em", "6em"]
     IMAGE_WIDTH = ["10em", "20em","30em", "40em"]
     IMAGE_HEIGHT = ["7em", "15em","20em", "25em"]
@@ -54,14 +54,11 @@ BASE_STYLE = {
     },
 
     rx.Button: {
-        "display": "block",
         "padding": Size.SMALL.value,
         "border_radius": Size.DEFAULT.value,
         "bg": "white",
         "color": "black",
-        "border_width": "1px",
-        "border_color": "#888888",
-        "box_shadow": "5px 5px 3px #888888",
+
     },
     rx.Image: {
         "border_radius": BORDER_RADIUS,

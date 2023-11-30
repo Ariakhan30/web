@@ -19,13 +19,19 @@ def navbar() -> rx.Component:
         rx.button(
             rx.image(src="/logo_comercial.png", width=Size.LOGO.value, border_radius=styles.BORDER_RADIUS),
             on_click=DrawerState.left,
-            width="5vw",
-            height="5vh",
+            width=Size.LOGO.value,
+            height=Size.LOGO.value,
         ),
         rx.drawer(
             rx.drawer_overlay(
                 rx.drawer_content(
-                    rx.drawer_header("Menu"),
+                    rx.drawer_header(
+                        rx.hstack(
+                            rx.heading("Menu", font_size=Size.BIG.value), 
+                            rx.button("X", on_click=DrawerState.left),
+                        justify_content="space-between",
+                        ),
+                    ),
                     rx.drawer_body(
                         rx.vstack(
                             rx.link("Inicio", href="/"),
@@ -35,11 +41,9 @@ def navbar() -> rx.Component:
                         spacing="4vh"
                         ),
                     ),
-                    rx.drawer_footer(
-                        rx.button("Close", on_click=DrawerState.left)
-                    ),
                 bg="rgba(0, 0, 0, 0.3)",
-                )
+                ),
+            close_on_overlay_click=True,    
             ),
         placement="left",
         is_open=DrawerState.show_left,

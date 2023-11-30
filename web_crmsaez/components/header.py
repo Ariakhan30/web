@@ -9,9 +9,9 @@ def header() -> rx.Component:
         rx.hstack(
             rx.hstack(
                 navbar(),                
-                rx.text("CRISTALERÍA MANOLO SÁEZ S.L.", color=styles.FONT_COLOR, font_size=Size.FONT_HEADER.value, font_family="ubuntu"),
+                rx.text("CRISTALERÍA MANOLO SÁEZ S.L.", color=styles.FONT_COLOR, font_size=Size.FONT_HEADER.value, font_family="ubuntu", padding_left=Size.BIG.value),
             padding=Size.FONT_HEADER.value,
-            spacing="2vw"
+            spacing="6vw"
             ),
             rx.hstack(    
                 rx.image(src="/Origlass_logo.png", height=Size.ORIGLASS.value, border_radius=styles.BORDER_RADIUS),
@@ -19,7 +19,8 @@ def header() -> rx.Component:
                     " 96 675 07 96", href="tel:966750796",
                     color=styles.FONT_COLOR, font_size=Size.FONT_SIZE.value, is_external=True),
             justify="right",  
-            padding=Size.FONT_HEADER.value,      
+            padding=Size.FONT_HEADER.value, 
+            spacing="4vw"     
             ),
         display="flex",
         justify="space-between",

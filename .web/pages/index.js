@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { Event, getAllLocalStorageItems, getRefValue, getRefValues, isTrue, preventDefault, refs, spreadArraysOrObjects, uploadFiles, useEventLoop } from "/utils/state"
 import { EventLoopContext, initialEvents, StateContext } from "/utils/context.js"
 import "focus-visible/dist/focus-visible"
-import { Box, Button, Center, Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Heading, HStack, Image, Link, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Text, useColorMode, VStack } from "@chakra-ui/react"
+import { Box, Button, Center, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Heading, HStack, Image, Link, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Text, useColorMode, VStack } from "@chakra-ui/react"
 import NextLink from "next/link"
 import { PhoneIcon } from "@chakra-ui/icons"
 import NextHead from "next/head"
@@ -70,16 +70,23 @@ export default function Component() {
   <VStack sx={{"width": "100%", "overflow": "auto"}}>
   <Box sx={{"width": "100%", "bg": "white"}}>
   <HStack justify={`space-between`} sx={{"display": "flex", "width": "100%", "overflow": "auto"}}>
-  <HStack spacing={`2vw`} sx={{"padding": ["0.6em", "0.9em", "1em", "2em"], "width": "100%", "overflow": "auto"}}>
+  <HStack spacing={`6vw`} sx={{"padding": ["0.6em", "0.9em", "1em", "2em"], "width": "100%", "overflow": "auto"}}>
   <Box sx={{"width": "5vw"}}>
-  <Button onClick={(_e) => addEvents([Event("drawer_state.left", {})], (_e))} sx={{"width": "5vw", "height": "5vh", "display": "block", "padding": "0.5em", "borderRadius": "1em", "bg": "white", "color": "black", "borderWidth": "1px", "borderColor": "#888888", "boxShadow": "5px 5px 3px #888888"}}>
-  <Image src={`/logo_comercial.png`} sx={{"width": ["2.5em", "4em", "6em", "8em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
+  <Button onClick={(_e) => addEvents([Event("drawer_state.left", {})], (_e))} sx={{"width": ["3em", "4em", "6em", "8em"], "height": ["3em", "4em", "6em", "8em"], "padding": "0.5em", "borderRadius": "1em", "bg": "white", "color": "black"}}>
+  <Image src={`/logo_comercial.png`} sx={{"width": ["3em", "4em", "6em", "8em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
 </Button>
   <Drawer closeOnOverlayClick={true} isOpen={drawer_state.show_left} placement={`left`}>
-  <DrawerOverlay>
+  <DrawerOverlay sx={{"closeOnOverlayClick": true}}>
   <DrawerContent sx={{"bg": "rgba(0, 0, 0, 0.3)"}}>
   <DrawerHeader>
+  <HStack justifyContent={`space-between`} sx={{"width": "100%", "overflow": "auto"}}>
+  <Heading sx={{"fontSize": "2em"}}>
   {`Menu`}
+</Heading>
+  <Button onClick={(_e) => addEvents([Event("drawer_state.left", {})], (_e))} sx={{"padding": "0.5em", "borderRadius": "1em", "bg": "white", "color": "black"}}>
+  {`X`}
+</Button>
+</HStack>
 </DrawerHeader>
   <DrawerBody>
   <VStack alignItems={`left`} spacing={`4vh`} sx={{"width": "100%", "overflow": "auto"}}>
@@ -94,20 +101,15 @@ export default function Component() {
 </Link>
 </VStack>
 </DrawerBody>
-  <DrawerFooter>
-  <Button onClick={(_e) => addEvents([Event("drawer_state.left", {})], (_e))} sx={{"display": "block", "padding": "0.5em", "borderRadius": "1em", "bg": "white", "color": "black", "borderWidth": "1px", "borderColor": "#888888", "boxShadow": "5px 5px 3px #888888"}}>
-  {`Close`}
-</Button>
-</DrawerFooter>
 </DrawerContent>
 </DrawerOverlay>
 </Drawer>
 </Box>
-  <Text sx={{"color": "black", "fontSize": ["0.6em", "0.9em", "1em", "2em"], "fontFamily": "ubuntu"}}>
+  <Text sx={{"color": "black", "fontSize": ["0.6em", "0.9em", "1em", "2em"], "fontFamily": "ubuntu", "paddingLeft": "2em"}}>
   {`CRISTALERÍA MANOLO SÁEZ S.L.`}
 </Text>
 </HStack>
-  <HStack justify={`right`} sx={{"padding": ["0.6em", "0.9em", "1em", "2em"], "width": "100%", "overflow": "auto"}}>
+  <HStack justify={`right`} spacing={`4vw`} sx={{"padding": ["0.6em", "0.9em", "1em", "2em"], "width": "100%", "overflow": "auto"}}>
   <Image src={`/Origlass_logo.png`} sx={{"height": ["2em", "3em", "4em", "6em"], "borderRadius": "10", "boxShadow": "7px 7px 5px  #888888"}}/>
   <Link as={NextLink} href={`tel:966750796`} isExternal={true} sx={{"color": "black", "fontSize": ["0.3em", "0.5em", "0.8em", "1em"]}}>
   <PhoneIcon/>

@@ -42,7 +42,7 @@ def images() -> rx.Component:
             footer(),
         ),
         bg="white",
-        width="120em",
+        width="display-width",
         align="center",
         height="auto"
     )
